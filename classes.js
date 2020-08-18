@@ -168,23 +168,18 @@ class Machine{
   }
 
   makeWidgets(num){
-    // console.log(num)
     this.widgets_made_count += num;
-    // console.log(thi)
-    // console.log(this.wear_and_tear_count)
-    // console.log(this.widgets_made_count / 50)
-    // console.log(Math.floor(this.widgets_made_count / 50))
     this.wear_and_tear_count = Math.floor(this.widgets_made_count / 50);
-    // console.log(this.wear_and_tear_count)
     return (this.wear_and_tear_count)
   }
 
   fixMachine(){
     return this.needs_reboot = true;
   }
-  reboot = function(){
-    this.needs_reboot = false;
-    // console.log(this.wear_and_tear_count)
-    return this.wear_and_tear_count = Math.floor(this.widgets_made_count / 50);
+  reboot(){
+    return () =>{
+      this.wear_and_tear_count -= 10;
+      return this.needs_reboot = false;
     }
+  }
 }
